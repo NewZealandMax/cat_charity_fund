@@ -12,7 +12,7 @@ async def pull_investment(
 ):
     donations = await session.execute(
         select(Donation).where(
-            Donation.fully_invested == False
+            Donation.fully_invested == False # noqa
         ).order_by(Donation.id)
     )
     for donation in donations.scalars().all():

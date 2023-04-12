@@ -7,7 +7,7 @@ class CRUDBase:
         self.model = model
 
     async def get(
-        self, 
+        self,
         obj_id: int,
         session: AsyncSession,
     ):
@@ -19,7 +19,7 @@ class CRUDBase:
         return db_obj.scalars().first()
 
     async def get_multi(
-        self, 
+        self,
         session: AsyncSession
     ):
         db_objs = await session.execute(select(self.model))

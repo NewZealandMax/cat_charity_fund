@@ -11,7 +11,7 @@ from app.services.push_investment import push_investment
 class CRUDDonation(CRUDBase):
 
     async def create(
-        self, 
+        self,
         obj_in,
         session: AsyncSession,
         user: User

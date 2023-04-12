@@ -12,7 +12,7 @@ async def push_investment(
 ):
     projects = await session.execute(
         select(CharityProject).where(
-            CharityProject.fully_invested == False
+            CharityProject.fully_invested == False  # noqa
         ).order_by(CharityProject.id)
     )
     for project in projects.scalars().all():

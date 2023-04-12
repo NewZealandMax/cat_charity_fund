@@ -15,7 +15,7 @@ from app.services.pull_investment import pull_investment
 class CRUDCharityProject(CRUDBase):
 
     async def create(
-        self, 
+        self,
         obj_in,
         session: AsyncSession,
     ):
@@ -41,8 +41,10 @@ class CRUDCharityProject(CRUDBase):
             )
         obj_data = jsonable_encoder(db_obj)
         update_data = obj_in.dict(exclude_unset=True)
-        if ('full_amount' in update_data and
-            update_data['full_amount'] < obj_data['invested_amount']):
+        if (
+            'full_amount' in update_data and
+            update_data['full_amount'] < obj_data['invested_amount']
+        ):
             raise HTTPException(
                 status_code=HTTPStatus.UNPROCESSABLE_ENTITY,
                 detail='Full amount can\'t be less than invested amount'
@@ -51,7 +53,7 @@ class CRUDCharityProject(CRUDBase):
             if field in update_data:
                 setattr(db_obj, field, update_data[field])
         if db_obj.full_amount == db_obj.invested_amount:
-            db_obj.fully_invested == True
+            db_obj.fully_invested = True
             db_obj.close_date = datetime.now()
         session.add(db_obj)
         await session.commit()
@@ -85,7 +87,7 @@ class CRUDCharityProject(CRUDBase):
             )
         )
         return db_project.scalars().first()
-    
+
     async def get_project_id_by_name(
         self,
         project_name: str,
