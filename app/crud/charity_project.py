@@ -9,24 +9,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
 from app.models import CharityProject
-from app.services.pull_investment import pull_investment
 
 
 class CRUDCharityProject(CRUDBase):
-
-    async def create(
-        self,
-        obj_in,
-        session: AsyncSession,
-    ):
-        obj_in_data = obj_in.dict()
-        project = self.model(**obj_in_data)
-        setattr(project, 'invested_amount', 0)
-        session.add(project)
-        await pull_investment(project, session)
-        await session.commit()
-        await session.refresh(project)
-        return project
 
     async def update(
         self,
