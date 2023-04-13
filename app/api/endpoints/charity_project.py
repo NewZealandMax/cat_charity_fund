@@ -24,8 +24,8 @@ router = APIRouter()
 )
 async def create_new_charity_project(
     project: CharityProjectCreate,
-    model = Donation,
-    session: AsyncSession = Depends(get_async_session)
+    session: AsyncSession = Depends(get_async_session),
+    model=Donation
 ):
     await check_name_duplicate(project.name, session)
     return await charity_project_crud.create(project, model, session)

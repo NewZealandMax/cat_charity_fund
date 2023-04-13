@@ -20,9 +20,9 @@ router = APIRouter()
 )
 async def create_new_donation(
     donation: DonationCreate,
-    model = CharityProject,
     session: AsyncSession = Depends(get_async_session),
-    user: User = Depends(current_user)
+    user: User = Depends(current_user),
+    model=CharityProject
 ):
     return await donation_crud.create(donation, model, session, user)
 
