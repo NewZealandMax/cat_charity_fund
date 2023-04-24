@@ -11,5 +11,5 @@
 http://127.0.0.1:8000/docs
 
 ### Автор проекта
-_Max Stepanov_
+_Max Stepanov_  
 _GitHub: NewZealandMax_
