@@ -6,7 +6,6 @@
 ### Запуск проекта
 ```
 uvicorn app.main:app
-
 ```
 
 ### API
