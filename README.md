@@ -11,8 +11,9 @@
 http://127.0.0.1:8000/docs
 
 ### Версия языка
-`Python 3.9.2`  
-Зависимости представлены в файле requirements.txt
+`Python 3.9.2`
+
+Зависимости представлены в файле `requirements.txt`
 
 ### Стек технологий
 `FastAPI` `Pydantic` `SQLAlchemy` `Alembic` `Uvicorn`
