@@ -1,6 +1,6 @@
 from datetime import datetime
 from http import HTTPStatus
-from typing import Optional
+from typing import Optional, List
 
 from fastapi import HTTPException
 from fastapi.encoders import jsonable_encoder

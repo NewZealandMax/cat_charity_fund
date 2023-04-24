@@ -8,6 +8,7 @@ from app.core.db import get_async_session
 from app.core.user import current_superuser
 from app.crud.charity_project import charity_project_crud
 from app.models import Donation
+from app.models.utils import get_donation_model
 from app.schemas.charity_project import (
     CharityProjectDB, CharityProjectCreate, CharityProjectUpdate
 )
@@ -24,8 +25,8 @@ router = APIRouter()
 )
 async def create_new_charity_project(
     project: CharityProjectCreate,
+    model: Donation = Depends(get_donation_model),
     session: AsyncSession = Depends(get_async_session),
-    model=Donation
 ):
     await check_name_duplicate(project.name, session)
     return await charity_project_crud.create(project, model, session)

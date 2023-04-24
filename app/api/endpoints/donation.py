@@ -7,6 +7,7 @@ from app.core.db import get_async_session
 from app.core.user import current_superuser, current_user
 from app.crud.donation import donation_crud
 from app.models import CharityProject, User
+from app.models.utils import get_project_model
 from app.schemas.donation import DonationCreate, DonationDB, DonationSuperuser
 
 
@@ -20,9 +21,9 @@ router = APIRouter()
 )
 async def create_new_donation(
     donation: DonationCreate,
+    model: CharityProject = Depends(get_project_model),
     session: AsyncSession = Depends(get_async_session),
     user: User = Depends(current_user),
-    model=CharityProject
 ):
     return await donation_crud.create(donation, model, session, user)
 
